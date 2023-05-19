@@ -3,8 +3,8 @@ public:
     void setZeroes(vector<vector<int>>& matrix) {
         
         // Declaring rows and column tracking vectors
-        vector<int> trackRows(matrix.size());        
-        vector<int> trackCols(matrix[0].size());
+        vector<int> trackRows(matrix.size(),0);        
+        vector<int> trackCols(matrix[0].size(),0);
 
         // Traversing matrix and marking both vectors
         
