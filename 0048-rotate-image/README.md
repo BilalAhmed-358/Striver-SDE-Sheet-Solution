@@ -24,3 +24,36 @@
 	<li><code>-1000 &lt;= matrix[i][j] &lt;= 1000</code></li>
 </ul>
 </div>
+
+# Notes
+## Brute force solution
+
+1. You can take another matrix and put the rows of the first matrix in the columns of the second matrix, by the you are done the matrix would've been rotated clockwise
+2. but this approach is not optimal and would be rejected.
+
+## Optimal Approach
+
+1. First we will perform the transpose of a matrix
+2. Then we will reverse each row
+3. The end result will be that our matrix would be rotated 90 degree clockwise
+   ![](1.png)
+
+4. The time complexity would be `O(N^2)` [for transpose] and `O(N^2)` [for reversal of all rows]
+
+5. The code of the algorithm is given below
+    ```py
+
+    class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        
+        # Taking transpose of a the matrix
+        for i in range(len(matrix)):
+            for j in range (0,i):
+                matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+                
+        # Now reversing each row
+        
+        for i in range(len(matrix)):
+            matrix[i]=matrix[i][::-1]
+        
+    ```
