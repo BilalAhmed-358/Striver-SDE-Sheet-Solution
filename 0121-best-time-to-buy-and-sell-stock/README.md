@@ -28,3 +28,43 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 	<li><code>0 &lt;= prices[i] &lt;= 10<sup>4</sup></code></li>
 </ul>
 </div>
+
+# NOTES
+
+## Brute force solution
+1. Following is the brute force solution
+    ```python
+    class Solution:
+        def maxProfit(self, prices: List[int]) -> int:
+            max_profit=0
+            
+            for i in range(len(prices)):
+                for j in range (i+1, len(prices)):
+                    if(prices[j]-prices[i] > max_profit):
+                        max_profit = prices[j]-prices[i]
+                        print(max_profit)
+            
+            return max_profit
+    ```
+2. The solution is correct but you will get `TLE` if you implement this logic.
+
+
+## Optimal Solution
+
+1. We perform a single pass on the array, and store the minimum value towards the left of the pointer  in the array inside a variable.
+2. On each iteration of the we calculate the local profit and compare it with a global profit, the max of both values is stored in the global profit variable
+3. The `max_profit` is returned once the array has been traversed completely
+
+    ```py
+    class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        max_profit=0
+        min_element= sys.maxsize
+        for i in range(len(prices)):
+            min_element=min(min_element, prices[i])
+            profit = prices[i] - min_element
+            max_profit = max(max_profit,profit)
+            # print(max_profit)
+        
+        return max_profit
+    ```
